@@ -187,6 +187,9 @@ to quickly create a Cobra application.`,
 			syncCmd = append(syncCmd, fmt.Sprintf("s3://%s", sourceBucketName))
 			syncCmd = append(syncCmd, fmt.Sprintf("s3://%s", destinationBucketName))
 
+			syncCmd = append(syncCmd, "--acl")
+			syncCmd = append(syncCmd, "public-read")
+
 			log.Printf("Syncing bucket(%s) => bucket(%s)", sourceBucketName, destinationBucketName)
 			if err = awsCliRun(syncCmd); err != nil {
 				log.Fatal(err)
